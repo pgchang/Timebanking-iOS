@@ -20,5 +20,6 @@ class Tracking: NSManagedObject {
     @NSManaged var speed: String
     @NSManaged var speedAcc: String
     @NSManaged var locAcc: String
+    @NSManaged var batteryLevel: String
 
 }

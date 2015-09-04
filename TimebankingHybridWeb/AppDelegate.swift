@@ -68,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var speed = "initSpeed"
     var locAcc = "initLocAcc"
     var offlineUpload = [[String]]()
-    var uploadContents = ["lat", "long", "UNKNOWN", "conf", "timestamp", "timezone", "speed", "batteryLeft", "connection", "timezone","locAcc"]
+    var uploadContents = ["lat", "long", "UNKNOWN", "conf", "timestamp", "timezone", "speed", "batteryLeft", "connection", "timezone","locAcc", "batteryLevel"]
     var oldTime = NSDate().timeIntervalSince1970
     var uploadString = ""
     var shouldStopTracking = false
@@ -157,8 +157,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             self.speed = "\(speedCalc)"
             tracking.longitude = self.locationLongitude
             tracking.latitude = self.locationLatitude
-            //tracking.speed = "\(locationObj.speed)"
-            //tracking.locAcc = "\(locationObj.horizontalAccuracy)"
+            tracking.speed = "\(locationObj.speed)"
+            tracking.locAcc = "\(locationObj.horizontalAccuracy)"
+            tracking.speedAcc = "-1"
             uploadContents[0] = self.locationLatitude
             uploadContents[1] = self.locationLongitude
             uploadContents[6] = "\(speedCalc)"
@@ -230,6 +231,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             uploadContents[9] = baseEncodeTimeZone()
             var batteryLeft = ""
             batteryLeft = "\(Int(UIDevice.currentDevice().batteryLevel*100))"
+            tracking.batteryLevel = batteryLeft
             var batteryHealthy :Bool
             if UIDevice.currentDevice().batteryState == UIDeviceBatteryState.Charging || UIDevice.currentDevice().batteryState == UIDeviceBatteryState.Full {
                 batteryHealthy = true
@@ -267,6 +269,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         let predicate = NSPredicate(format: "timestamp < %@ AND timestamp > %@", firstTimestamp, secondTimestamp)
         request.predicate = predicate
         request.returnsObjectsAsFaults = false
+        var batchString = ""
+        var counter = 0
         if let result = managedObjectContext!.executeFetchRequest(request, error:nil){
             println("The number of entries in this fetch is \(result.count)")
             println("the first timestamp is \(firstTimestamp) and the second timestamp is \(secondTimestamp)")
@@ -278,8 +282,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 var entryLongitude: AnyObject? = log.valueForKey("longitude")
                 var entryTimestamp: AnyObject? = log.valueForKey("timestamp")
                 var entryTimezone: AnyObject? = log.valueForKey("timezone")
+                var entryLocAcc: AnyObject? = log.valueForKey("locAcc")
+                var entrySpeed: AnyObject? = log.valueForKey("speed")
+                var entrySpeedAcc: AnyObject? = log.valueForKey("speedAcc")
+                var entryBatteryLevel: AnyObject? = log.valueForKey("batteryLevel")
+                //build string here
+                
                 if entryActivity != nil && entryConfidence != nil {
-                    //build the string here
+                    //batchString = batchStringBuilder(timestamp: entryTimestamp, timezone: entryTimezone, latitude: entryLatitude, longitude: entryLongitude, activity: entryActivity, confidence: entryConfidence, speed: entrySpeed, batteryLevel: entryBatteryLevel, locAcc: entryLocAcc, speedAcc: entrySpeedAcc)
                 }
             }
             return result.count

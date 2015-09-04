@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimebankingHybridWeb/AppDelegate.swift"
-            timestampString = "463034403.756694"
+            timestampString = "463036356.434934"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "355"
-            endingLineNumber = "355"
+            startingLineNumber = "362"
+            endingLineNumber = "362"
             landmarkName = "sendBatchToWebService(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -72,11 +72,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimebankingHybridWeb/AppDelegate.swift"
-            timestampString = "463034403.756694"
+            timestampString = "463036356.434934"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "399"
-            endingLineNumber = "399"
+            startingLineNumber = "406"
+            endingLineNumber = "406"
             landmarkName = "sendToServerBatch()"
             landmarkType = "5">
          </BreakpointContent>
@@ -225,11 +225,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimebankingHybridWeb/AppDelegate.swift"
-            timestampString = "463025917.790367"
+            timestampString = "463036227.491782"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
             landmarkName = "locationManager(_:didUpdateLocations:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -257,11 +257,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimebankingHybridWeb/AppDelegate.swift"
-            timestampString = "463034403.756694"
+            timestampString = "463036356.434934"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "422"
-            endingLineNumber = "422"
+            startingLineNumber = "429"
+            endingLineNumber = "429"
             landmarkName = "sendToServerBatch()"
             landmarkType = "5">
          </BreakpointContent>
@@ -273,11 +273,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimebankingHybridWeb/AppDelegate.swift"
-            timestampString = "463034403.756694"
+            timestampString = "463036356.434934"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "359"
-            endingLineNumber = "359"
+            startingLineNumber = "366"
+            endingLineNumber = "366"
             landmarkName = "sendToWebservice(_:timestampString:latitudeString:longitudeString:speedString:timezoneString:confidenceString:batteryString:locAccString:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -289,11 +289,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimebankingHybridWeb/AppDelegate.swift"
-            timestampString = "463034403.756694"
+            timestampString = "463036356.434934"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "369"
-            endingLineNumber = "369"
+            startingLineNumber = "376"
+            endingLineNumber = "376"
             landmarkName = "sendToWebservice(_:timestampString:latitudeString:longitudeString:speedString:timezoneString:confidenceString:batteryString:locAccString:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -305,11 +305,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimebankingHybridWeb/AppDelegate.swift"
-            timestampString = "463034403.756694"
+            timestampString = "463036356.434934"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "368"
-            endingLineNumber = "368"
+            startingLineNumber = "375"
+            endingLineNumber = "375"
             landmarkName = "sendToWebservice(_:timestampString:latitudeString:longitudeString:speedString:timezoneString:confidenceString:batteryString:locAccString:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -321,11 +321,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimebankingHybridWeb/AppDelegate.swift"
-            timestampString = "463034403.756694"
+            timestampString = "463036356.434934"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "364"
-            endingLineNumber = "364"
+            startingLineNumber = "371"
+            endingLineNumber = "371"
             landmarkName = "sendToWebservice(_:timestampString:latitudeString:longitudeString:speedString:timezoneString:confidenceString:batteryString:locAccString:)"
             landmarkType = "5">
          </BreakpointContent>

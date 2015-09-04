@@ -2,6 +2,7 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14F27" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Tracking" representedClassName="TimebankingHybridWeb.Tracking" syncable="YES">
         <attribute name="activity" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="batteryLevel" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="confidence" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="locAcc" optional="YES" attributeType="String" syncable="YES"/>
@@ -12,6 +13,6 @@
         <attribute name="timezone" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Tracking" positionX="-63" positionY="-18" width="128" height="180"/>
+        <element name="Tracking" positionX="-63" positionY="-18" width="128" height="195"/>
     </elements>
 </model>

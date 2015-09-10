@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimebankingHybridWeb/AppDelegate.swift"
-            timestampString = "463036356.434934"
+            timestampString = "463438919.323078"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "362"
-            endingLineNumber = "362"
-            landmarkName = "sendBatchToWebService(_:)"
+            startingLineNumber = "394"
+            endingLineNumber = "394"
+            landmarkName = "sendBatchToWebService(_:batchFromDB:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -72,13 +72,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimebankingHybridWeb/AppDelegate.swift"
-            timestampString = "463036356.434934"
+            timestampString = "463438919.323078"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "406"
-            endingLineNumber = "406"
-            landmarkName = "sendToServerBatch()"
-            landmarkType = "5">
+            startingLineNumber = "437"
+            endingLineNumber = "437"
+            landmarkName = "AppDelegate"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -209,11 +209,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimebankingHybridWeb/AppDelegate.swift"
-            timestampString = "463023742.632895"
+            timestampString = "463082690.552576"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "AppDelegate"
             landmarkType = "3">
          </BreakpointContent>
@@ -225,11 +225,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimebankingHybridWeb/AppDelegate.swift"
-            timestampString = "463036227.491782"
+            timestampString = "463082690.552576"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
             landmarkName = "locationManager(_:didUpdateLocations:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -241,11 +241,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimebankingHybridWeb/AppDelegate.swift"
-            timestampString = "463023742.632895"
+            timestampString = "463082690.552576"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "AppDelegate"
             landmarkType = "3">
          </BreakpointContent>
@@ -257,11 +257,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimebankingHybridWeb/AppDelegate.swift"
-            timestampString = "463036356.434934"
+            timestampString = "463438919.323078"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "429"
-            endingLineNumber = "429"
+            startingLineNumber = "460"
+            endingLineNumber = "460"
             landmarkName = "sendToServerBatch()"
             landmarkType = "5">
          </BreakpointContent>
@@ -273,11 +273,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimebankingHybridWeb/AppDelegate.swift"
-            timestampString = "463036356.434934"
+            timestampString = "463438919.323078"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "366"
-            endingLineNumber = "366"
+            startingLineNumber = "398"
+            endingLineNumber = "398"
+            landmarkName = "sendBatchToWebService(_:batchFromDB:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimebankingHybridWeb/AppDelegate.swift"
+            timestampString = "463438919.323078"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "408"
+            endingLineNumber = "408"
             landmarkName = "sendToWebservice(_:timestampString:latitudeString:longitudeString:speedString:timezoneString:confidenceString:batteryString:locAccString:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -289,27 +305,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimebankingHybridWeb/AppDelegate.swift"
-            timestampString = "463036356.434934"
+            timestampString = "463438919.323078"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "376"
-            endingLineNumber = "376"
-            landmarkName = "sendToWebservice(_:timestampString:latitudeString:longitudeString:speedString:timezoneString:confidenceString:batteryString:locAccString:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TimebankingHybridWeb/AppDelegate.swift"
-            timestampString = "463036356.434934"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "375"
-            endingLineNumber = "375"
+            startingLineNumber = "407"
+            endingLineNumber = "407"
             landmarkName = "sendToWebservice(_:timestampString:latitudeString:longitudeString:speedString:timezoneString:confidenceString:batteryString:locAccString:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -321,12 +321,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimebankingHybridWeb/AppDelegate.swift"
-            timestampString = "463036356.434934"
+            timestampString = "463438919.323078"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "371"
-            endingLineNumber = "371"
-            landmarkName = "sendToWebservice(_:timestampString:latitudeString:longitudeString:speedString:timezoneString:confidenceString:batteryString:locAccString:)"
+            startingLineNumber = "403"
+            endingLineNumber = "403"
+            landmarkName = "AppDelegate"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimebankingHybridWeb/AppDelegate.swift"
+            timestampString = "463069029.944753"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "250"
+            endingLineNumber = "250"
+            landmarkName = "locationManager(_:didUpdateLocations:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TimebankingHybridWeb/AppDelegate.swift"
+            timestampString = "463082502.83655"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "293"
+            endingLineNumber = "293"
+            landmarkName = "instancesSinceLastUpload(_:secondTimestamp:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

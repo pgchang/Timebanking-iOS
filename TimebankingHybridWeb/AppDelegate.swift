@@ -236,7 +236,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             batteryLeft = "\(Int(UIDevice.currentDevice().batteryLevel*100))"
             tracking.batteryLevel = batteryLeft
             if Int(UIDevice.currentDevice().batteryLevel*100) > self.batteryChargeLast{
-                instancesSinceLastUpload(String(self.lastUploadFromDB))
+                var instances = instancesSinceLastUpload(String(self.lastUploadFromDB))
+                println("Since the last upload, we have had \(instances) new instances")
                 self.lastUploadFromDB = Int(NSDate().timeIntervalSince1970)
             }
             self.batteryChargeLast = Int(UIDevice.currentDevice().batteryLevel*100)

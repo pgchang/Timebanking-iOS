@@ -11,6 +11,8 @@ import UIKit
 class ViewController: UIViewController {
     
     
+    
+    @IBOutlet weak var timestamp: UILabel!
     @IBOutlet weak var trackingToggle: UISwitch!
     @IBOutlet weak var trackingText: UILabel!
     //Christian says the button works???

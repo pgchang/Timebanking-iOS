@@ -68,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var speed = "initSpeed"
     var locAcc = "initLocAcc"
     var offlineUpload = [[String]]()
-    var uploadContents = ["lat", "long", "UNKNOWN", "conf", "timestamp", "timezone", "speed", "batteryLeft", "connection", "timezone","locAcc", "batteryLevel"]
+    var uploadContents = ["0lat", "1long", "2UNKNOWN", "3conf", "4timestamp", "5timezone", "6speed", "7batteryLeft", "8connection", "9timezone","10locAcc", "11batteryLevel"]
     var oldTime = NSDate().timeIntervalSince1970
     var uploadString = ""
     var shouldStopTracking = false
@@ -78,9 +78,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var oldLocation : CLLocation!
     //ensures that larger batch uploads do not time out
     let batchLimit = 20
-    var batchArray :NSMutableArray = []
     var batchCounter = 0
     var batteryChargeLast = 0
+    var batchArray :NSMutableArray = []
+    
     var lastUploadFromDB = Int(NSDate().timeIntervalSince1970)
     var timeAsString : String = ""
     
@@ -218,7 +219,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                     tracking.confidence = self.activityConfidence
                 }
             }
-            tracking.timestamp = "\(Int(NSDate().timeIntervalSince1970))"
+            tracking.timestamp = "\(NSDate().timeIntervalSince1970)"
             tracking.timezone = "\(NSTimeZone.localTimeZone().abbreviation!)"
             uploadContents[5] = tracking.timezone
             println(tracking.timezone)
@@ -254,12 +255,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                     }
                 }
                 println(uploadContents)
-                sendToWebservice(uploadContents[2], timestampString: uploadContents[4], latitudeString: uploadContents[1], longitudeString: uploadContents[0], speedString: uploadContents[6], timezoneString: uploadContents[9], confidenceString: uploadContents[3], batteryString: uploadContents[7], locAccString: uploadContents[10])
+                sendToWebservice(uploadContents[2], timestampString: uploadContents[4], latitudeString: uploadContents[0], longitudeString: uploadContents[1], speedString: uploadContents[6], timezoneString: uploadContents[9], confidenceString: uploadContents[3], batteryString: uploadContents[7], locAccString: uploadContents[10])
                 
             } else {
                 self.batchCounter += 1
                 uploadContents[8] = "Not connected"
-                batchString = batchStringBuilder(uploadContents[4], timezone: uploadContents[9], latitude: uploadContents[1], longitude: uploadContents[0], activity: uploadContents[2], confidence: uploadContents[3], speed: uploadContents[6], batteryLevel :uploadContents[7], locAcc: uploadContents[10], speedAcc: "-1")
+                batchString = batchStringBuilder(uploadContents[4], timezone: uploadContents[9], latitude: uploadContents[0], longitude: uploadContents[1], activity: uploadContents[2], confidence: uploadContents[3], speed: uploadContents[6], batteryLevel :uploadContents[7], locAcc: uploadContents[10], speedAcc: "-1")
                 self.uploadString = self.uploadString + batchString
                 println(self.uploadString)
                 //checks to see if the number of instances in this batch is at the limit as set above
@@ -288,37 +289,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         var backupCounter = 0
         if let result = managedObjectContext!.executeFetchRequest(request, error:nil){
             println("The number of entries in this fetch is \(result.count)")
-            println(result[result.count-1])
-            for log in result {
-                var entryActivity: String? = log.valueForKey("activity") as? String
-                var entryConfidence: String? = log.valueForKey("confidence") as? String
-                var entryLatitude: String? = log.valueForKey("latitude") as? String
-                var entryLongitude: String? = log.valueForKey("longitude") as? String
-                var entryTimestamp: String? = log.valueForKey("timestamp") as? String
-                var entryTimezone: AnyObject? = log.valueForKey("timezone") as? String
-                var entryLocAcc: String? = log.valueForKey("locAcc") as? String
-                var entrySpeed: String? = log.valueForKey("speed") as? String
-                var entrySpeedAcc: String? = log.valueForKey("speedAcc") as? String
-                var entryBatteryLevel: String? = log.valueForKey("batteryLevel") as? String
-                //build string here
+            if result.count > 0 {
+                println(result[result.count-1])
+                for log in result {
+                    var entryActivity: String? = log.valueForKey("activity") as? String
+                    var entryConfidence: String? = log.valueForKey("confidence") as? String
+                    var entryLatitude: String? = log.valueForKey("latitude") as? String
+                    var entryLongitude: String? = log.valueForKey("longitude") as? String
+                    var entryTimestamp: String? = log.valueForKey("timestamp") as? String
+                    var entryTimezone: AnyObject? = log.valueForKey("timezone") as? String
+                    var entryLocAcc: String? = log.valueForKey("locAcc") as? String
+                    var entrySpeed: String? = log.valueForKey("speed") as? String
+                    var entrySpeedAcc: String? = log.valueForKey("speedAcc") as? String
+                    var entryBatteryLevel: String? = log.valueForKey("batteryLevel") as? String
+                    //build string here
                 
                 
-                if entryActivity != nil && entryConfidence != nil && entryLatitude != nil && entryLongitude != nil && entryTimestamp != nil && entryTimezone != nil && entryLocAcc != nil && entrySpeed != nil && entrySpeedAcc != nil && entryBatteryLevel != nil{
-                    backupCounter += 1
-                    //println("\(entryActivity!), \(entryConfidence!), \(entryLatitude!), \(entryLongitude!), \(entryTimestamp!), \(entryTimezone!), \(entryLocAcc!), \(entrySpeed!), \(entrySpeedAcc!), \(entryBatteryLevel!)")
+                    if entryActivity != nil && entryConfidence != nil && entryLatitude != nil && entryLongitude != nil && entryTimestamp != nil && entryTimezone != nil && entryLocAcc != nil && entrySpeed != nil && entrySpeedAcc != nil && entryBatteryLevel != nil{
+                        backupCounter += 1
+                        //println("\(entryActivity!), \(entryConfidence!), \(entryLatitude!), \(entryLongitude!), \(entryTimestamp!), \(entryTimezone!), \(entryLocAcc!), \(entrySpeed!), \(entrySpeedAcc!), \(entryBatteryLevel!)")
                     
-                    let timezoneString1 :AnyObject = entryTimezone!
-                    if timezoneString1.lowercaseString.rangeOfString("optional") != nil {
-                        println("exists")
-                        //println("\(timezoneString1[))
-                    }
-                    println("the time zone is " + (timezoneString1 as! String))
+                        let timezoneString1 :AnyObject = entryTimezone!
+                        if timezoneString1.lowercaseString.rangeOfString("optional") != nil {
+                            println("exists")
+                            //println("\(timezoneString1[))
+                        }
+                        println("the time zone is " + (timezoneString1 as! String))
                     
-                    batchString = batchString + batchStringBuilder(entryTimestamp!, timezone: entryTimezone! as! String, latitude: entryLatitude!, longitude: entryLongitude!, activity: entryActivity!, confidence: entryConfidence!, speed: entrySpeed!, batteryLevel: entryBatteryLevel!, locAcc: entryLocAcc!, speedAcc: entrySpeedAcc!)
-                    println(batchString)
-                    if backupCounter == 20 {
-                        sendBatchToWebService(batchString, batchFromDB: true)
-                        batchString = ""
+                        batchString = batchString + batchStringBuilder(entryTimestamp!, timezone: entryTimezone! as! String, latitude: entryLatitude!, longitude: entryLongitude!, activity: entryActivity!, confidence: entryConfidence!, speed: entrySpeed!, batteryLevel: entryBatteryLevel!, locAcc: entryLocAcc!, speedAcc: entrySpeedAcc!)
+                        println(batchString)
+                        if backupCounter == 20 {
+                            sendBatchToWebService(batchString, batchFromDB: true)
+                            batchString = ""
+                        }
                     }
                 }
             }
@@ -386,6 +389,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                             println("Batch Upload: Activities reported successfully, clearning stored data")
                             if !batchFromDB{
                                 self.uploadString = ""
+                                viewController.timestamp.text = "\(NSTimeIntervalSince1970))"
                             }
                         }
                         if let message = json["message"] as? NSString {
@@ -404,7 +408,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     //send on the fly to the t-bank web service
     func sendToWebservice(activityString: String,timestampString: String, latitudeString : String, longitudeString :String, speedString :String, timezoneString: String, confidenceString: String, batteryString: String, locAccString :String) {
         var response: NSURLResponse?
-        let myUrl = NSURL(string: "http://ridesharing.cmu-tbank.com/reportActivity.php?userID=1&deviceID=\(self.deviceIDBase64)=&activity=\(activityString)&activityConfidence=\(activityConfidence)&currentTime=\(timestampString)&timeZone=\(timezoneString)&lat=\(latitudeString)&lng=-\(longitudeString)&locationAccuracy=\(locAccString)&speed=\(speedString)&speedAccuracy=-1&batteryLevel=\(batteryString)")
+        let myUrl = NSURL(string: "http://ridesharing.cmu-tbank.com/reportActivity.php?userID=1&deviceID=\(self.deviceIDBase64)=&activity=\(activityString)&activityConfidence=\(activityConfidence)&currentTime=\(timestampString)&timeZone=\(timezoneString)&lat=\(latitudeString)&lng=\(longitudeString)&locationAccuracy=\(locAccString)&speed=\(speedString)&speedAccuracy=-1&batteryLevel=\(batteryString)")
         let request = NSMutableURLRequest(URL:myUrl!)
         request.HTTPMethod = "POST"
         println(myUrl!)

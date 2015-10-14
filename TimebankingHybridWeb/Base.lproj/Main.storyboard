@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -34,18 +34,35 @@
                                     <action selector="switchToggled:" destination="vXZ-lx-hvc" eventType="valueChanged" id="zzd-Yy-Gj4"/>
                                 </connections>
                             </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Global Upload" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Duo-WU-qNz">
+                                <rect key="frame" x="226" y="227" width="148" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="timestamp" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ih-KI-xwx">
+                                <rect key="frame" x="251" y="256" width="81" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="CKi-2o-BIT" secondAttribute="centerY" constant="159.5" id="4gT-aT-eTo"/>
+                            <constraint firstAttribute="centerY" secondItem="Duo-WU-qNz" secondAttribute="centerY" constant="62.5" id="IoL-FR-tEX"/>
                             <constraint firstAttribute="centerX" secondItem="Gxs-cg-cPk" secondAttribute="centerX" constant="8.5" id="UGj-bJ-X0k"/>
                             <constraint firstAttribute="centerY" secondItem="gpD-1I-7cM" secondAttribute="centerY" constant="130.5" id="dVt-Ai-8hA"/>
+                            <constraint firstAttribute="centerX" secondItem="Duo-WU-qNz" secondAttribute="centerX" id="hPF-ro-IJ3"/>
+                            <constraint firstAttribute="centerX" secondItem="4ih-KI-xwx" secondAttribute="centerX" constant="8.5" id="ntY-iP-ZEt"/>
                             <constraint firstAttribute="centerX" secondItem="gpD-1I-7cM" secondAttribute="centerX" constant="8.5" id="qOX-bn-RZJ"/>
+                            <constraint firstAttribute="centerY" secondItem="4ih-KI-xwx" secondAttribute="centerY" constant="33.5" id="uqL-Pv-ehe"/>
                             <constraint firstAttribute="centerX" secondItem="CKi-2o-BIT" secondAttribute="centerX" id="y1S-nH-vXF"/>
                             <constraint firstAttribute="centerY" secondItem="Gxs-cg-cPk" secondAttribute="centerY" constant="96.5" id="yVY-K6-iGI"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="timestamp" destination="4ih-KI-xwx" id="Bdu-E7-qQ8"/>
                         <outlet property="trackingText" destination="gpD-1I-7cM" id="DFV-Fc-yeF"/>
                         <outlet property="trackingToggle" destination="Gxs-cg-cPk" id="FGy-mt-fph"/>
                     </connections>

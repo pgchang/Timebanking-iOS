@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  test1
 //
-//  Created by Ivy Chung on 6/16/15.
-//  Copyright (c) 2015 Patrick Chang. All rights reserved.
+//
+//  Created by Patrick Chang on 6/16/15.
+//  Copyright (c) 2015 UbicompLab. All rights reserved.
 //
 
 import Foundation
@@ -16,7 +16,7 @@ import CoreMotion
 import SystemConfiguration
 
 
-//used for checkting connectivity to the internet
+//used for checking connectivity to the internet
 public class Reachability {
     
     class func isConnectedToNetwork() -> Bool {
@@ -68,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var speed = "initSpeed"
     var locAcc = "initLocAcc"
     var offlineUpload = [[String]]()
-    var uploadContents = ["0lat", "1long", "2UNKNOWN", "3conf", "4timestamp", "5timezone", "6speed", "7batteryLeft", "8connection", "9timezone","10locAcc", "11batteryLevel"]
+    var uploadContents = ["0lat", "1long", "UNKNOWN", "3conf", "4timestamp", "5timezone", "6speed", "7batteryLeft", "8connection", "9timezone","10locAcc", "11batteryLevel"]
     var oldTime = NSDate().timeIntervalSince1970
     var uploadString = ""
     var shouldStopTracking = false
@@ -103,7 +103,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         //locationManager.locationServicesEnabled
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.pausesLocationUpdatesAutomatically = false
-        locationManager.distanceFilter = 0
+        locationManager.distanceFilter = 250
         //println(self.deviceIDBase64)
         locationManager.requestAlwaysAuthorization()
     }
@@ -137,9 +137,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             var locationObj = locationArray.lastObject as! CLLocation
             var coord = locationObj.coordinate
             var batchString = ""
-            
-            
-            //new stuff as of 9/3/2015
             if self.firstTime {
                 self.oldLocation = locationObj
                 self.firstTime = false
@@ -149,12 +146,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             let distance = oldLocation.distanceFromLocation(locationObj)
             let timeDiff = locationObj.timestamp.timeIntervalSinceDate(oldLocation.timestamp)
             let speedCalc = distance/timeDiff
-            
-            
-            
-            
-            
-            
             self.locationLongitude = "\(coord.longitude)"
             self.locationLatitude = "\(coord.latitude)"
             self.locAcc = "\(locationObj.horizontalAccuracy)"
@@ -167,7 +158,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             uploadContents[0] = self.locationLatitude
             uploadContents[1] = self.locationLongitude
             uploadContents[6] = "\(speedCalc)"
-            uploadContents[10] = self.locAcc
+            uploadContents[10] = "\(locationObj.horizontalAccuracy)"
             self.activityManager.startActivityUpdatesToQueue(self.dataProcessingQueue) {
                 data in
                 dispatch_async(dispatch_get_main_queue()) {
@@ -276,7 +267,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     }
         
-        
+    // shows how many instances are stored in the database since the transmission
     func instancesSinceLastUpload(lastUploadTimestamp: String) ->Int {
         // print out number of instances stored in database
         var request = NSFetchRequest(entityName: "Tracking")
@@ -431,72 +422,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
     }
     
-    //used to send data in batches to local ftp server
-    func sendToServerBatch() {
-        var itemsToUpload = 25
-        var i = 0
-        let myUrl = NSURL(string: "http://epiwork.hcii.cs.cmu.edu/~afsaneh/ChristianHybrid.php")
-        let request = NSMutableURLRequest(URL:myUrl!)
-        request.HTTPMethod = "POST"
-        var postString = "\(UIDevice.currentDevice().identifierForVendor.UUIDString)"
-        if offlineUpload.count < 25 {
-            itemsToUpload = offlineUpload.count
-        }
-        while i < (itemsToUpload - 1) {
-            println(offlineUpload[0])
-            postString = postString + "Device ID=\(UIDevice.currentDevice().identifierForVendor.UUIDString), batteryLeft=\(offlineUpload[0][7]), longitude=\(offlineUpload[0][1]), latitude=\(offlineUpload[0][0]), type=\(offlineUpload[0][2]), confidence=\(offlineUpload[0][3]), timestamp=\(offlineUpload[0][4]), timezone=\(offlineUpload[0][5]),connection=\(offlineUpload[0][8])\n)"
-            offlineUpload.removeAtIndex(0)
-            i += 1
-        }
-        
-        println(postString)
-        request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
-            data, response, error in
-            if error != nil {
-                println("error=\(error)")
-                return
-            }
-            var err: NSError?
-            var myJSON = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error:&err) as? NSDictionary
-        }
-        println("data sent to server")
-        task.resume()
-    }
-    
-    //used to send data on the fly to a local ftp server
-    func sendToServer(longitudeString: String, latitudeString: String, activityString: String, confidenceString: String, timestampString: String, timeZoneString: String, batteryChargeLeft :String, connectionString: String) {
-        //let myUrl = NSURL(string: "http://cmu-tbank.com/~afsaneh@cmu-tbank.com/uploadScript.php")
-        let myUrl = NSURL(string: "http://epiwork.hcii.cs.cmu.edu/~afsaneh/ChristianHybrid.php");
-        println(myUrl)
-        let request = NSMutableURLRequest(URL:myUrl!);
-        request.HTTPMethod = "POST";
-        //modify strings for formatting
-        let stringBuffer = ", "
-        let deviceString = UIDevice.currentDevice().identifierForVendor.UUIDString + stringBuffer
-        let batteryString = batteryChargeLeft + stringBuffer
-        let longitudeString2 = longitudeString + stringBuffer
-        let latitudeString2 = latitudeString + stringBuffer
-        let activityString2 = activityString + stringBuffer
-        let confidenceString2 = confidenceString + stringBuffer
-        // Compose a query string
-        let postString = "deviceID=\(deviceString)&batteryLeft=\(batteryString)&longitude=\(longitudeString2)&latitude=\(latitudeString2)&type=\(activityString2)&confidence=\(confidenceString2)&timestamp=\(timestampString)&timezone=\(timeZoneString)&connection=\(connectionString)";
-        
-        request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding);
-        
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
-            data, response, error in
-            if error != nil {
-                println("error=\(error)")
-                return
-            }
-            var err: NSError?
-            var myJSON = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error:&err) as? NSDictionary
-        }
-        println("data sent to server")
-        task.resume()
-    }
-    
     //used to generate the base64encoded timezone of data collection
     func baseEncodeTimeZone() -> String {
         //generating the timezone string
@@ -544,7 +469,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
   
-    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -570,6 +494,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     
     // MARK: - Core Data stack
+    // Everything below here works on storing the data collected in a sqlite database on the phone
     
     lazy var applicationDocumentsDirectory: NSURL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "UbiCompLab-CMU.test1" in the application's documents Application Support directory.
